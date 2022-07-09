@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express-session": "^1.17.3",
+    "mongoose": "^6.4.1",
+    "passport": "^0.6.0",
+    "passport-discord": "^0.1.4",
+    "semantic-ui-react": "^2.1.3"
+  }
+}
