@@ -10,10 +10,10 @@ const mongoose = require('mongoose')
 const db = require('./util/database/database')
 const mod = require('./util/mod.js')
 
-const DiscordStrat = require('./strategies/discordstrategy');
+const DiscordStrat = require('./auth/strategies/discordstrategy');
 const MongoStore = require('connect-mongo');
 const cors = require('cors')
-const isDev = require('./util');
+const isDev = require('./util/util');
 const bodyParser = require("body-parser");
 
 db.then(() => console.log('Connected to MongoDB')).catch(err => console.log(err));
@@ -38,12 +38,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Routes
-const authRoute = require('./routes/auth');
-const dashboardRoute = require('./routes/dashboard');
+const authRoute = require('./auth/auth');
+const dashboardRoute = require('./routes/api-calls');
 
 // Middleware Routes
 app.use('/auth', authRoute);
-app.use('/dashboard', dashboardRoute);
+app.use('/', dashboardRoute);
 
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
@@ -56,4 +56,3 @@ app.use(function (req, res, next) {
 app.listen(port, () => {
     console.log('Listening on ' + port)
 })
-

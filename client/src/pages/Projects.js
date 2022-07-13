@@ -17,7 +17,7 @@ export default class Projects extends React.Component {
 
     async componentDidMount() {
         document.title = "Projects";
-        await fetch(isDev() ? 'http://localhost:3001/dashboard/get-mods' : 'https://mc-be.craig.software/dashboard/get-mods').then((response) => response.json()).then(res => {
+        await fetch(isDev() ? 'http://localhost:3001/get-mods' : 'https://mc-be.craig.software/get-mods').then((response) => response.json()).then(res => {
             this.setState({ projects: res.data });
 
             let downloads = 0;
@@ -40,10 +40,14 @@ export default class Projects extends React.Component {
                 {!this.state.isLoaded && <BarLoader color="white" height={8} loading speedMultiplier={1} width={window.innerWidth} />}
                 {!this.state.isLoaded && <p style={{ color: 'white' }}>Loading Projects...</p>}
 
-                <div className="container-lg">
-                    <h1>Minecraft Mods</h1>
-                    <p style={{color: 'white'}}><div className='ui red label'>Mod Pack</div> - Modpacks are a collection of Minecraft mods that create an overall theme</p>
-                    <p style={{color: 'white'}}><div className='ui blue label'>Mod</div> - A Minecraft mod is an independent, user-made modification to the Mojang video game Minecraft.</p>
+                <h1>Minecraft Mods</h1>
+
+                
+                <div className="container-lg justify-content-center align-items-center">
+
+               
+                    <p style={{ color: 'white' }}><div className='ui red label'>Mod Pack</div> - Modpacks are a collection of Minecraft mods that create an overall theme</p>
+                    <p style={{ color: 'white' }}><div className='ui blue label'>Mod</div> - A Minecraft mod is an independent, user-made modification to the Mojang video game Minecraft.</p>
 
                     {this.state.projects.sort((b, a) => a.downloads - b.downloads).map((project) =>
                         <Mod mod={project} key={project.name} />

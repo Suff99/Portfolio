@@ -1,8 +1,8 @@
 const router = require('express').Router();
 const { json } = require('express');
 const passport = require('passport');
-const DiscordUser = require('../models/DiscordUser');
-const isDev = require('../util');
+const DiscordUser = require('./models/DiscordUser');
+const isDev = require('../util/util');
 
 router.get('/discord', passport.authenticate('discord'));
 
@@ -11,8 +11,6 @@ router.get('/redirect', passport.authenticate('discord'), (req, res) => {
     res.redirect(process.env.REDIRECT_URL);
 });
 
-
-// TODO, design page that mounts the response and saves it to discord logged in user 
 router.get('/minecraft', isAuthorized, (req, res) => {
 
     let code = req.query.mcAuth;
@@ -31,7 +29,7 @@ router.get('/minecraft', isAuthorized, (req, res) => {
             body: JSON.stringify({
                 code: code,
                 client_id: '2868706533640766525',
-                client_secret: "9EnglkTh.2872291224964826184.H4sZ",
+                client_secret: process.env.MC_OATH_SECRET,
                 redirect_uri: process.env.REDIRECT_URL,
                 grant_type: 'authorization_code'
             })

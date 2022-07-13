@@ -27,6 +27,19 @@
   border-color: #BDC6FF #59639A #59639A #BDC6FF;
 }
 
+.text-image {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+/* Bottom left text */
+.bottom-left {
+  position: absolute;
+  bottom: 80px;
+  left: 250px;
+}
+
 .grayscale {
   -webkit-filter: grayscale(100%);
   /* Safari 6.0 - 9.0 */

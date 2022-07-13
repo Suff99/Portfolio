@@ -14,7 +14,6 @@ import AdminDonators from './pages/admin/AdminDonators';
 import Dashboard from './pages/Dashboard';
 import CreateFrame from './pages/CreateFrame';
 import UploadSkin from './pages/admin/UploadSkin';
-import Fortnite from './pages/fortnite';
 
 const root = ReactDOM.createRoot(
   document.getElementById("root")
@@ -39,7 +38,6 @@ root.render(
       
       <Route path="frame-maker" element={<CreateFrame />} />
       <Route path="upload-skin" element={<UploadSkin />} />
-      <Route path="fortnite" element={<Fortnite />} />
 
     </Routes>
     <BottomFooter />

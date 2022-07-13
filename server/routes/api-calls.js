@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { MongoClient } = require('mongodb');
+const { getTwitchUser } = require('../util/util');
 
 function isAuthorized(req, res, next) {
     if (req.user) {
@@ -39,26 +40,11 @@ router.get('/get-mods', (req, res) => {
     });
 })
 
-const TwitchApi = require("node-twitch").default;
-
-const twitch = new TwitchApi({
-    client_id: process.env.TWITCH_CLIENT,
-    client_secret: process.env.TWITCH_SECRET
-});
-
-
-async function getUser(loginName) {
-    const users = await twitch.getUsers(loginName);
-    const user = users.data[0];
-    return user;
-}
-
 router.get('/twitch', async (req, res) => {
-
     if (!req.query.user) {
         res.json({ message: 'Missing username!' })
     } else {
-        await getUser(req.query.user).then(data => {
+        await getTwitchUser(req.query.user).then(data => {
             res.json(data)
         })
     }

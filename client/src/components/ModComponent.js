@@ -16,7 +16,7 @@ export default class Mod extends Component {
     async componentDidMount() {
         for (let index = 0; index < this.props.mod.authors.length; index++) {
             const element = this.props.mod.authors[index];
-            let link = isDev() ? 'http://localhost:3001/dashboard/twitch?user=' : 'https://mc-be.craig.software/dashboard/twitch?user=';
+            let link = isDev() ? 'http://localhost:3001/twitch?user=' : 'https://mc-be.craig.software/twitch?user=';
             await fetch(link + element.name, {
             }).then(data => data.json()).then(data => {
                 this.setState(previousState => ({
@@ -31,11 +31,14 @@ export default class Mod extends Component {
             <div className="ui message">
                 <div className="ui items ">
                     <div className="item">
-                    <div className={(this.props.mod.classId === 6 ? 'blue' : 'red') + ' ui bottom attached label'}>{this.props.mod.classId === 6 ? 'Mod' : 'Mod Pack'}</div>
+                    <div className={(this.props.mod.classId === 6 ? 'blue' : 'red') + ' ui bottom attached label'} >{this.props.mod.classId === 6 ? 'Mod' : 'Mod Pack'}</div>
 
                         <a className="ui small image">
                             <img draggable="false" src={this.props.mod.logo} />
                         </a>
+
+
+
                         <div className="content">
                             <a href={this.props.mod.website} className="header">{this.props.mod.title} {this.state.authors.filter(e => e.name === 'Suff99').length == 0 && <div class="ui purple horizontal label">Contributed</div>}
                             </a>
@@ -72,6 +75,7 @@ export default class Mod extends Component {
                                             </div>
                                         </Accordion.Body>
                                     </Accordion.Item>
+
 
                                     <Accordion.Item eventKey="1">
                                         <Accordion.Header className='mc-font'>Supported Minecraft Versions</Accordion.Header>

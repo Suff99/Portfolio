@@ -25,12 +25,12 @@ export default class Skinpack extends React.Component {
             .then((res) => {
                 this.setState({ skins: res.data, isLoaded: true })
             })
-            document.title = "Regeneration Skins";
-
     }
 
-    render() {
 
+
+    render() {
+        document.title = "Regeneration Skins";
 
         return (
 
@@ -46,7 +46,7 @@ export default class Skinpack extends React.Component {
 
                     <div className="row text-center justify-content-center align-items-center mx-0 px-0">
                         {this.state.skins.sort((a, b) => a.name.localeCompare(b.name)).sort((b, a) => a.author.link.localeCompare(b.author.link)).filter(skin => skin.name.toLowerCase().includes(this.state.searchQuery.toLowerCase())).map((object) =>
-                            <SkinComponent data={object} key={object.name}/>
+                            <SkinComponent data={object} key={object.name} />
                         )}
                         <br /><br /><br />
                     </div>
@@ -59,3 +59,6 @@ export default class Skinpack extends React.Component {
 }
 
 
+function getUniqueListBy(arr, key) {
+    return [...new Map(arr.map(item => [item[key], item])).values()]
+}

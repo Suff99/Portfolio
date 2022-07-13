@@ -53,7 +53,7 @@ export function isUuid(uuid) {
 }
 
 // Returns a 2D head of a Minecraft Player from their UUID. Will return default skin head if UUID is not valid.
-export function getImage(uuid) {
+export function getSkinHead(uuid) {
   if (isUuid(uuid)) {
     return 'https://api.sprax2013.de/mc/skin/' + uuid + '/head?size=64';
   }
@@ -67,7 +67,6 @@ export function getMinecraftPlayerName(uuid) {
 
 //
 export function getMinecraftDetails(url, code) {
-
   window.location = url + '?mcAuth=' + code;
 }
 

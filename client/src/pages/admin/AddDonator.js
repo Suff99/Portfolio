@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Row, Col, Form, InputGroup } from 'react-bootstrap';
 
 import axios from 'axios';
-import { getImage, getUserDetails, isUserAdmin } from '../../util/utils';
+import { getSkinHead, getUserDetails, isUserAdmin } from '../../util/utils';
 
 export default function AddDonator({ history }) {
 
@@ -79,7 +79,7 @@ export default function AddDonator({ history }) {
 
                                 <Form.Label>UUID</Form.Label>
                                 <InputGroup className="mb-3">
-                                    <InputGroup.Text id="basic-addon1"><img src={getImage(input.uuid)} alt={"Player"} /></InputGroup.Text>
+                                    <InputGroup.Text id="basic-addon1"><img src={getSkinHead(input.uuid)} alt={"Player"} /></InputGroup.Text>
                                     <Form.Control required pattern="^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$" id="uuid" name="uuid" placeholder="Minecraft UUID" value={input.uuid} onChange={handleChange} />
                                     <Form.Control.Feedback type="invalid">Please give a Valid Minecraft UUID</Form.Control.Feedback>
                                 </InputGroup>
